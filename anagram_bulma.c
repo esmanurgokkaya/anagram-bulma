@@ -1,30 +1,31 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-int kontrol(char* dizi1,char* dizi2); //tanımlanmış bir fonksiyonun bildirimini yaptık
+int kontrol(char* dizi1,char* dizi2); //tanÄ±mlanmÄ±ÅŸ bir fonksiyonun bildirimini yaptÄ±k
 
 int main (){
-	// bu kodda kullanıcıdan 10 tane kelime alıp her bir kelimenin farklı anagramını yazdırdık
+	// bu kodda kullanÄ±cÄ±dan 10 tane kelime alÄ±p her bir kelimenin farklÄ± anagramÄ±nÄ± yazdÄ±rdÄ±k
 	int i,j;
-	char kelimeler[10][30];		// kullanıcıdan alınan kelimelerin tutulacağı iki boyutlu dizi tanımladık
-	// kullanıcıya yapacağı işlemleri bildirdik
+	char kelimeler[10][30];		// kullanÄ±cÄ±dan alÄ±nan kelimelerin tutulacaÄŸÄ± iki boyutlu dizi tanÄ±mladÄ±k
+	// kullanÄ±cÄ±ya yapacaÄŸÄ± iÅŸlemleri bildirdik
 	printf("**********ANAGRAM BULMA**********\n");
 	printf("Anagramlarinin eslestirilmesini istediginiz 10 kelimeyi giriniz!\n");
-	// döngü kullanarak kullanıcıdan kelimeleri aldık	
+	// dÃ¶ngÃ¼ kullanarak kullanÄ±cÄ±dan kelimeleri aldÄ±k	
 	for (i=0; i<10;i++){
 		printf(">>> ");
 		scanf("%s",kelimeler[i]);
 	}
 	printf("*********************************");
 	printf("\nGirdiginiz kelimelerden birbirinin anagrami olanlar!\n");
-	// bu döngü sayesinde her bir elemanın anagramı bulunur
-	for (i = 0; i < 9; i++) {	/* bu kısımda döngüyü son elemana kadar döndürüyoruz 
-								ama son elemanı karşılaştıracak bir eleman olmadığı için onu almıyoruz*/
-   		for ( j = i + 1; j < 10; j++) {	/*bu kısımda da döngü ilk elemanı almayacak şekilde başlar 
-		   						ve onu kendinden bir önceki elemanla kontrol eder*/
-    		if (kontrol(kelimeler[i], kelimeler[j]) ){		/* if yapısında kontrol fonksiyonuna elemanlar sırayla gönderilir 
-															kontrol fonksiyonu 1 değeri gönderirse çalışır göndermezse çalışmayıp döngüye devam eder*/
-        		printf(">>> %s %s\n", kelimeler[i], kelimeler[j]);	// fonksiyonun çalıştığı durumda onun 1 döndürmesini sağlayan kelimler yazdırılılr.
+	// bu dÃ¶ngÃ¼ sayesinde her bir elemanÄ±n anagramÄ± bulunur
+	for (i = 0; i < 9; i++) {	/* bu kÄ±sÄ±mda dÃ¶ngÃ¼yÃ¼ son elemana kadar dÃ¶ndÃ¼rÃ¼yoruz 
+								ama son elemanÄ± karÅŸÄ±laÅŸtÄ±racak bir eleman olmadÄ±ÄŸÄ± iÃ§in onu almÄ±yoruz*/
+   		for ( j = i + 1; j < 10; j++) {	/*bu kÄ±sÄ±mda da dÃ¶ngÃ¼ ilk elemanÄ± almayacak ÅŸekilde baÅŸlar 
+		   						ve onu kendinden bir Ã¶nceki elemanla kontrol eder*/
+    		if (kontrol(kelimeler[i], kelimeler[j]) ){		/* if yapÄ±sÄ±nda kontrol fonksiyonuna elemanlar sÄ±rayla gÃ¶nderilir 
+															kontrol fonksiyonu 1 deÄŸeri gÃ¶nderirse Ã§alÄ±ÅŸÄ±r gÃ¶ndermezse Ã§alÄ±ÅŸmayÄ±p dÃ¶ngÃ¼ye devam eder*/
+        		printf(">>> %s %s\n", kelimeler[i], kelimeler[j]);	// fonksiyonun Ã§alÄ±ÅŸtÄ±ÄŸÄ± durumda onun 1 dÃ¶ndÃ¼rmesini saÄŸlayan kelimler yazdÄ±rÄ±lÄ±lr.
       		
 			  }
    		 
@@ -32,31 +33,31 @@ int main (){
  	 }	
 	return 0;
 }
-	// if içinde geçerli olması için 1 veya 0 gönderilecek o yüzden int olarak tanımladık
-int kontrol(char* dizi1 , char* dizi2){		// parametre olarak karşılaştıralacak kelimeler tanımladık
+	// if iÃ§inde geÃ§erli olmasÄ± iÃ§in 1 veya 0 gÃ¶nderilecek o yÃ¼zden int olarak tanÄ±mladÄ±k
+int kontrol(char* dizi1 , char* dizi2){		// parametre olarak karÅŸÄ±laÅŸtÄ±ralacak kelimeler tanÄ±mladÄ±k
 	int i;
-	// her bir harfin kaç kez geçtiğini sayması için her bir kelime için bir dizi tanımladık 
-	// bu diziler ASCII tablosunda bulunan alfabe harflerine göre boyut aldı
+	// her bir harfin kaÃ§ kez geÃ§tiÄŸini saymasÄ± iÃ§in her bir kelime iÃ§in bir dizi tanÄ±mladÄ±k 
+	// bu diziler ASCII tablosunda bulunan alfabe harflerine gÃ¶re boyut aldÄ±
 	int dizi1_harfler[26] = {0};
 	int dizi2_harfler[26] = {0};
 	
-	for(i=0 ; i< strlen(dizi1) ; i++){	// gönderilen kelimenin uzunluğu kadar döner
-		int harf = dizi1[i];			// kelimenin ilk harfinin ASCII tablosundaki tam sayı karşılığı harf değişkenine aktarılır
-		dizi1_harfler[ harf - 'a']++;	/* harf değişkeninin "a" harfine uzaklığı hesaplanıp alfabedeki kaçıncı harf olduğu bulunur
-										ve o index 1 arttırılır böylce döngü sonuna kadar bu dizi kelimedeki hangi harften kaç tane olduğunu tutar*/
+	for(i=0 ; i< strlen(dizi1) ; i++){	// gÃ¶nderilen kelimenin uzunluÄŸu kadar dÃ¶ner
+		int harf = dizi1[i];			// kelimenin ilk harfinin ASCII tablosundaki tam sayÄ± karÅŸÄ±lÄ±ÄŸÄ± harf deÄŸiÅŸkenine aktarÄ±lÄ±r
+		dizi1_harfler[ harf - 'a']++;	/* harf deÄŸiÅŸkeninin "a" harfine uzaklÄ±ÄŸÄ± hesaplanÄ±p alfabedeki kaÃ§Ä±ncÄ± harf olduÄŸu bulunur
+										ve o index 1 arttÄ±rÄ±lÄ±r bÃ¶ylce dÃ¶ngÃ¼ sonuna kadar bu dizi kelimedeki hangi harften kaÃ§ tane olduÄŸunu tutar*/
 	}
-	// yukarıdaki for da yapılan tüm işlem gönderilen bu ikinci kelime için yapılır ve döngü tamamlanır
+	// yukarÄ±daki for da yapÄ±lan tÃ¼m iÅŸlem gÃ¶nderilen bu ikinci kelime iÃ§in yapÄ±lÄ±r ve dÃ¶ngÃ¼ tamamlanÄ±r
 	for(i=0 ; i< strlen(dizi2) ; i++){	
 		int harf = dizi2[i];
 		dizi2_harfler[ harf - 'a']++;
 	}
 	
 	for(i=0 ; i<26 ; i++){	
-		if (dizi1_harfler[i] != dizi2_harfler[i]) /* alfabetik sıra şeklinde her harf dolaşılır ve bunların aynı olmadığı duruma bakılır 
-													bu durumda 0 döndürülür ve main içinden çağırıldığında yanlış olduğu anlaşılsın*/
+		if (dizi1_harfler[i] != dizi2_harfler[i]) /* alfabetik sÄ±ra ÅŸeklinde her harf dolaÅŸÄ±lÄ±r ve bunlarÄ±n aynÄ± olmadÄ±ÄŸÄ± duruma bakÄ±lÄ±r 
+													bu durumda 0 dÃ¶ndÃ¼rÃ¼lÃ¼r ve main iÃ§inden Ã§aÄŸÄ±rÄ±ldÄ±ÄŸÄ±nda yanlÄ±ÅŸ olduÄŸu anlaÅŸÄ±lsÄ±n*/
 			return 0 ;
 	}
-	// for içinde hiçbir eşit olmama durumu gerçekleşmediğinde bu kelimelerin anagram olduğu anlaşılır ve 1 değeri döner 
+	// for iÃ§inde hiÃ§bir eÅŸit olmama durumu gerÃ§ekleÅŸmediÄŸinde bu kelimelerin anagram olduÄŸu anlaÅŸÄ±lÄ±r ve 1 deÄŸeri dÃ¶ner 
 	return 1 ;
 }
 
